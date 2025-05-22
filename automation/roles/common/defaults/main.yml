@@ -10,19 +10,19 @@ proxy_env: {} # yamllint disable rule:braces
 # Main cluster variables
 ############################################################
 
-patroni_cluster_name: "postgres-cluster" # the cluster name (must be unique for each cluster)
+patroni_cluster_name: "atadbcluster" # the cluster name (must be unique for each cluster)
 
 patroni_superuser_username: "postgres"
-patroni_superuser_password: "" # Please specify a password. If not defined, will be generated automatically during deployment.
+patroni_superuser_password: "wROrOqVlBOVlBrOq1p" # Please specify a password. If not defined, will be generated automatically during deployment.
 patroni_replication_username: "replicator"
-patroni_replication_password: "" # Please specify a password. If not defined, will be generated automatically during deployment.
+patroni_replication_password: wROrOqVlBOVlBrOq1p" # Please specify a password. If not defined, will be generated automatically during deployment.
 
 synchronous_mode: false # or 'true' for enable synchronous database replication
 synchronous_mode_strict: false # if 'true' then block all client writes to the master, when a synchronous replica is not available
 synchronous_node_count: 1 # number of synchronous standby databases
 
 # Load Balancing
-with_haproxy_load_balancing: false # or 'true' if you want to install and configure the HAProxy load balancers
+with_haproxy_load_balancing: true # or 'true' if you want to install and configure the HAProxy load balancers
 haproxy_listen_port:
   master: 5000
   replicas: 5001
@@ -73,7 +73,7 @@ haproxy_timeout:
 #  \"request_size\":%U\
 #  }"
 
-cluster_vip: "" # IP address for client access to the databases in the cluster (optional).
+cluster_vip: "10.161.241.99" # IP address for client access to the databases in the cluster (optional).
 vip_interface: "{{ ansible_default_ipv4.interface }}" # interface name (e.g., "ens32").
 # Note: VIP-based solutions such as keepalived or vip-manager may not function correctly in cloud environments.
 
@@ -464,7 +464,7 @@ pgbouncer_pools:
 patroni_restapi_listen_addr: "0.0.0.0" # Listen on all interfaces. Or use "{{ inventory_hostname }}" to listen on a specific IP address.
 patroni_restapi_port: 8008
 patroni_restapi_username: "patroni"
-patroni_restapi_password: "" # If not defined, a password will be generated automatically during deployment.
+patroni_restapi_password: "patroni" # If not defined, a password will be generated automatically during deployment.
 patroni_restapi_request_queue_size: 5
 patroni_ttl: 30
 patroni_loop_wait: 10

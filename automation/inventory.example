@@ -12,9 +12,9 @@
 
 # if dcs_exists: false and dcs_type: "etcd"
 [etcd_cluster]  # recommendation: 3, or 5-7 nodes
-#10.128.64.140
-#10.128.64.142
-#10.128.64.143
+10.161.241.94
+10.161.241.95
+10.160.225.31
 
 # if dcs_exists: false and dcs_type: "consul"
 [consul_instances]  # recommendation: 3 or 5-7 nodes
@@ -26,6 +26,9 @@
 
 # if with_haproxy_load_balancing: true
 [balancers]
+10.161.241.94
+10.161.241.95
+10.160.225.31
 #10.128.64.140 # balancer_tags="datacenter=dc1"
 #10.128.64.142 # balancer_tags="datacenter=dc1"
 #10.128.64.143 # balancer_tags="datacenter=dc1"
@@ -34,11 +37,11 @@
 
 # PostgreSQL nodes
 [master]
-#10.128.64.140 hostname=pgnode01 postgresql_exists=false # patroni_tags="datacenter=dc1"
+10.161.241.94 hostname=ankvxmatadbap01 postgresql_exists=false # patroni_tags="datacenter=dc1"
 
 [replica]
-#10.128.64.142 hostname=pgnode02 postgresql_exists=false # patroni_tags="datacenter=dc1"
-#10.128.64.143 hostname=pgnode03 postgresql_exists=false # patroni_tags="datacenter=dc1"
+10.161.241.95 hostname=ankvxmatadbap02 postgresql_exists=false  # patroni_tags="datacenter=dc1"
+10.160.225.31 hostname=ankvxmatadbap03 postgresql_exists=false # patroni_tags="datacenter=dc1"
 #10.128.64.144 hostname=pgnode04 postgresql_exists=false # patroni_tags="datacenter=dc2" patroni_replicatefrom="pgnode03"
 #10.128.64.145 hostname=pgnode04 postgresql_exists=false # patroni_tags="datacenter=dc2" new_node=true
 
@@ -58,7 +61,7 @@ replica
 [all:vars]
 ansible_connection='ssh'
 ansible_ssh_port='22'
-#ansible_user='root'
+ansible_user='ansible_user'
 #ansible_ssh_pass='secretpassword'  # "sshpass" package is required for use "ansible_ssh_pass"
 #ansible_ssh_private_key_file=
 #ansible_python_interpreter='/usr/bin/python3'
